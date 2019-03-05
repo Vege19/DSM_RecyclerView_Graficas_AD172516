@@ -1,6 +1,7 @@
 package com.example.recyclerviewgraphview;
 
 import android.arch.persistence.room.Room;
+import android.arch.persistence.room.RoomDatabase;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -47,10 +48,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void dataBaseBuild() {
+
         dataBase = Room.databaseBuilder(this,
                 AppDataBase.class,
                 "purpose_database")
-                .allowMainThreadQueries()
+                .allowMainThreadQueries().fallbackToDestructiveMigration()
                 .build();
 
     }
