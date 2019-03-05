@@ -23,7 +23,6 @@
     <!-- Toolbar Style -->
     <style name="ToolBarStyle" parent="android:Widget.Toolbar">
         <item name="android:background">@android:color/white</item>
-        <item name="android:elevation">4dp</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:layout_height">?actionBarSize</item>
         <item name="android:textStyle">bold</item>

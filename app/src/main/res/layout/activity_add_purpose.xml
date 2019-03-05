@@ -6,13 +6,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddPurposeActivity">
+    tools:context=".AddPurposeActivity"
+    android:background="@android:color/white">
 
     <Toolbar
         android:id="@+id/addPurposeToolBar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        style="@style/ToolBarStyle"/>
+        style="@style/ToolBarStyle"
+        android:elevation="0dp"/>
 
     <LinearLayout
         android:orientation="vertical"
