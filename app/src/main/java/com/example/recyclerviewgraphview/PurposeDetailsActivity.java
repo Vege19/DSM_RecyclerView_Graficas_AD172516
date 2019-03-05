@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.example.recyclerviewgraphview.Adapters.ProgressAdapter;
 import com.example.recyclerviewgraphview.DataBase.Progress;
@@ -30,13 +31,26 @@ public class PurposeDetailsActivity extends AppCompatActivity {
     private Button addProgressButton;
     private List<Progress> progresses = new ArrayList<>();
     private LineChart lineChart;
+    private Toolbar mToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purpose_details);
 
-        getSupportActionBar().setTitle(purpose().getPurpose_title());
+        //Toolbar setup
+        mToolBar = findViewById(R.id.purposeDetailsToolBar);
+        setActionBar(mToolBar);
+        mToolBar.setNavigationIcon(R.drawable.ic_round_arrow_back_24px);
+        mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PurposeDetailsActivity.this.finish();
+
+            }
+        });
+
+        getActionBar().setTitle(purpose().getPurpose_title());
 
         recyclerViewSetUp();
 
@@ -73,6 +87,7 @@ public class PurposeDetailsActivity extends AppCompatActivity {
 
                 //refresh recyclerview
                 recyclerViewSetUp();
+                lineChart.invalidate();
 
             }
         });
@@ -86,7 +101,7 @@ public class PurposeDetailsActivity extends AppCompatActivity {
             entries.add(new Entry((float)progress.getProgress_id(), (float)progress.getProgress_percentage()));
         }
 
-        LineDataSet dataSet = new LineDataSet(entries, "Label");
+        LineDataSet dataSet = new LineDataSet(entries, "Porcentaje");
         dataSet.setColor(Color.BLUE);
         dataSet.setValueTextColor(Color.BLACK);
 

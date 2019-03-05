@@ -2,65 +2,137 @@
 <LinearLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PurposeDetailsActivity"
-    android:padding="16dp">
+    tools:context=".PurposeDetailsActivity">
 
-    <TextView
-        android:id="@+id/purposeDetailDescription"
+    <Toolbar
+        android:id="@+id/purposeDetailsToolBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Descripcion"/>
+        android:layout_height="?actionBarSize"
+        style="@style/ToolBarStyle"/>
 
-    <View
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/darker_gray"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="PROGRESO"
-        android:layout_marginTop="16dp"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/progressRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"/>
+            <TextView
+                android:id="@+id/purposeDetailDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripcion"/>
 
-    <EditText
-        android:id="@+id/insertEvent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Evento"
-        android:inputType="text"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/black"/>
 
-    <EditText
-        android:id="@+id/insertPercentage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Porcentaje %"
-        android:inputType="numberDecimal"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Eventos"
+                android:layout_marginTop="16dp"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:textStyle="bold"/>
 
-    <Button
-        android:id="@+id/addProgressButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Agregar"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_background"
+                android:paddingBottom="16dp">
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/graph"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="16dp"/>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/progressRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/progressRecyclerView"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="?selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nuevo evento"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:textColor="@color/colorAccent"/>
+
+                    <ImageView
+                        android:id="@+id/addNewEvent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_round_add_circle_24px"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="center"
+                        android:layout_weight="6"
+                        />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/insertEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Evento"
+                android:inputType="text"/>
+
+            <EditText
+                android:id="@+id/insertPercentage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Porcentaje %"
+                android:inputType="number"/>
+
+            <Button
+                android:id="@+id/addProgressButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agregar"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Avance en gráfica"
+                android:layout_marginTop="16dp"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:textStyle="bold"/>
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/graph"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

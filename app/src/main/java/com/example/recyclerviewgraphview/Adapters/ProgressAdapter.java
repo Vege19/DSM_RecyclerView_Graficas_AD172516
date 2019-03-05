@@ -35,7 +35,7 @@ public class ProgressAdapter extends RecyclerView.Adapter<ProgressAdapter.ViewHo
         Progress progress = progresses.get(i);
 
         viewHolder.event.setText(progress.getProgress_event());
-        viewHolder.percentage.setText(String.valueOf(progress.getProgress_percentage()));
+        viewHolder.percentage.setText(String.valueOf(progress.getProgress_percentage()) + "%");
 
     }
 

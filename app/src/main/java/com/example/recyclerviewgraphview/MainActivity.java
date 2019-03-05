@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toolbar;
 
 import com.example.recyclerviewgraphview.Adapters.PurposeAdapter;
 import com.example.recyclerviewgraphview.DataBase.AppDataBase;
@@ -21,11 +22,16 @@ public class MainActivity extends AppCompatActivity {
     public static AppDataBase dataBase;
     private RecyclerView mRecyclerView;
     private FloatingActionButton mFab;
+    private Toolbar mToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Custom Toolbar setup
+        mToolBar = findViewById(R.id.mainToolBar);
+        setActionBar(mToolBar);
 
         //Initialize database
         dataBaseBuild();

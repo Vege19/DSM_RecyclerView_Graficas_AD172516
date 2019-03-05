@@ -6,39 +6,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddPurposeActivity"
-    android:padding="16dp"
-    android:gravity="center">
+    tools:context=".AddPurposeActivity">
 
-    <EditText
-        android:id="@+id/insertTitle"
+    <Toolbar
+        android:id="@+id/addPurposeToolBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Título"
-        android:inputType="text"/>
+        android:layout_height="?actionBarSize"
+        style="@style/ToolBarStyle"/>
 
-    <EditText
-        android:id="@+id/insertDescription"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="16dp"
-        android:hint="Descripción"
-        android:gravity="left"
-        android:inputType="text"/>
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
-    <EditText
-        android:id="@+id/insertDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Fecha"
-        android:inputType="date"/>
+        <EditText
+            android:id="@+id/insertTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Título"
+            android:inputType="text"
+            style="@style/EditTextStyle"/>
 
-    <Button
-        android:id="@+id/addPurposeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="AGREGAR"
-        android:layout_marginTop="16dp"/>
+        <EditText
+            android:id="@+id/insertDescription"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:hint="Descripción"
+            android:gravity="left"
+            android:inputType="text"
+            style="@style/EditTextStyle"/>
+
+        <EditText
+            android:id="@+id/insertDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Fecha"
+            android:inputType="date"
+            style="@style/EditTextStyle"/>
+
+        <Button
+            android:id="@+id/addPurposeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AGREGAR"
+            android:layout_marginTop="16dp"
+            style="@style/ButtonStyle"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
 
 </LinearLayout>
