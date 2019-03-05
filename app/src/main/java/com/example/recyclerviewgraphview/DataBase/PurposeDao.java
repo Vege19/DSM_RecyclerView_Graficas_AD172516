@@ -21,5 +21,11 @@ public interface PurposeDao {
     @Query("DELETE FROM purpose")
     void deleteAll();
 
+    //Insert progress event
+    @Insert
+    void insertEvent(Progress... progresses);
+
+    @Query("SELECT * FROM progress WHERE purpose_id= :id")
+    List<Progress> findProgressForPurpose(int id);
 
 }

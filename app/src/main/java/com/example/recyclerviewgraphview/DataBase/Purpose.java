@@ -3,13 +3,16 @@ package com.example.recyclerviewgraphview.DataBase;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.Relation;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class Purpose implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "purpose_id")
     public int purpose_id;
 
     @ColumnInfo(name = "purpose_title")
@@ -20,6 +23,7 @@ public class Purpose implements Serializable {
 
     @ColumnInfo(name = "purpose_date")
     public String purpose_date;
+
 
     public Purpose(String purpose_title, String purpose_description, String purpose_date) {
         this.purpose_title = purpose_title;
@@ -60,3 +64,4 @@ public class Purpose implements Serializable {
     }
 
 }
+
