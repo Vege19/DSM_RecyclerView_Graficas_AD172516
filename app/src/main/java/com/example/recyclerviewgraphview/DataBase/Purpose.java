@@ -21,15 +21,10 @@ public class Purpose implements Serializable {
     @ColumnInfo(name = "purpose_date")
     public String purpose_date;
 
-    @ColumnInfo(name = "purpose_progress")
-    public float purpose_progress;
-
-    public Purpose(int purpose_id, String purpose_title, String purpose_description, String purpose_date, float purpose_progress) {
-        this.purpose_id = purpose_id;
+    public Purpose(String purpose_title, String purpose_description, String purpose_date) {
         this.purpose_title = purpose_title;
         this.purpose_description = purpose_description;
         this.purpose_date = purpose_date;
-        this.purpose_progress = purpose_progress;
     }
 
     public int getPurpose_id() {
@@ -64,11 +59,4 @@ public class Purpose implements Serializable {
         this.purpose_date = purpose_date;
     }
 
-    public float getPurpose_progress() {
-        return purpose_progress;
-    }
-
-    public void setPurpose_progress(float purpose_progress) {
-        this.purpose_progress = purpose_progress;
-    }
 }

@@ -17,5 +17,9 @@ public interface PurposeDao {
     @Insert
     void insertPurpose(Purpose... purposes);
 
+    //Delete all purposes
+    @Query("DELETE FROM purpose")
+    void deleteAll();
+
 
 }

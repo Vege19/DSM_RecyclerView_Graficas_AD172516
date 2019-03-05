@@ -36,8 +36,7 @@ public class PurposeAdapter extends RecyclerView.Adapter<PurposeAdapter.ViewHold
         Purpose purpose = purposes.get(i);
 
         viewHolder.mTitle.setText(purpose.getPurpose_title());
-
-        viewHolder.mProgress.setText(String.valueOf(purpose.purpose_progress));
+        viewHolder.mDate.setText(purpose.getPurpose_date());
 
     }
 
@@ -48,13 +47,13 @@ public class PurposeAdapter extends RecyclerView.Adapter<PurposeAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView mTitle, mProgress;
+        private TextView mTitle, mDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mTitle = itemView.findViewById(R.id.purposeTitle);
-            mProgress = itemView.findViewById(R.id.purposeProgress);
+            mDate = itemView.findViewById(R.id.purposeDate);
 
         }
 
