@@ -30,22 +30,26 @@ public class PurposeDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purpose_details);
 
+        getSupportActionBar().setTitle(purpose().getPurpose_title());
+
         recyclerViewSetUp();
 
         initContent();
 
     }
 
-    private void initContent() {
-
-        //get serializable extra
+    private Purpose purpose() {
+        //get Parcelable extra
         final Purpose purpose = getIntent().getParcelableExtra("details");
 
-        //set recovered data
-        /*getActionBar().setTitle(purpose.getPurpose_title());*/
+        return purpose;
+
+    }
+
+    private void initContent() {
 
         description = findViewById(R.id.purposeDetailDescription);
-        description.setText(purpose.getPurpose_description());
+        description.setText(purpose().getPurpose_description());
 
         //get views and add a new progress
         insertEvent = findViewById(R.id.insertEvent);
@@ -59,7 +63,7 @@ public class PurposeDetailsActivity extends AppCompatActivity {
                 //insert progress
                 MainActivity.dataBase.purposeDao().insertProgress(new Progress(insertEvent.getText().toString(),
                         Double.parseDouble(insertPercentage.getText().toString()),
-                        purpose.getPurpose_id()));
+                        purpose().getPurpose_id()));
 
                 //refresh recyclerview
                 recyclerViewSetUp();
@@ -69,11 +73,9 @@ public class PurposeDetailsActivity extends AppCompatActivity {
     }
 
     private void recyclerViewSetUp() {
-        //get serializable extra
-        final Purpose purpose = getIntent().getParcelableExtra("details");
 
         //set db list in this list
-        progresses = MainActivity.dataBase.purposeDao().findProgressForPurpose(purpose.getPurpose_id());
+        progresses = MainActivity.dataBase.purposeDao().findProgressForPurpose(purpose().getPurpose_id());
         progressRecyclerView = findViewById(R.id.progressRecyclerView);
         progressRecyclerView.setLayoutManager(new GridLayoutManager(PurposeDetailsActivity.this, 1));
         progressRecyclerView.setAdapter(new ProgressAdapter(progresses, PurposeDetailsActivity.this));
