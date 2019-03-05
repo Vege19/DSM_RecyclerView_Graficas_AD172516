@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<android.support.design.widget.CoordinatorLayout android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PurposeDetailsActivity">
+    tools:context=".PurposeDetailsActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <Toolbar
         android:id="@+id/purposeDetailsToolBar"
@@ -15,7 +17,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:orientation="vertical"
@@ -87,30 +90,6 @@
 
             </RelativeLayout>
 
-            <EditText
-                android:id="@+id/insertEvent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Evento"
-                android:inputType="text"/>
-
-            <EditText
-                android:id="@+id/insertPercentage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Porcentaje %"
-                android:inputType="number"/>
-
-            <Button
-                android:id="@+id/addProgressButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Agregar"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"/>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -135,4 +114,13 @@
 
     </ScrollView>
 
-</LinearLayout>
+    <View
+        android:id="@+id/darkBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/view_background"
+        android:visibility="invisible"/>
+
+    <include layout="@layout/add_event_bottom_sheet"/>
+
+</android.support.design.widget.CoordinatorLayout>

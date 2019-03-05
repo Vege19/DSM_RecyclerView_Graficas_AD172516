@@ -1,6 +1,8 @@
 package com.example.recyclerviewgraphview;
 
 import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,7 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.recyclerviewgraphview.Adapters.ProgressAdapter;
@@ -32,6 +37,10 @@ public class PurposeDetailsActivity extends AppCompatActivity {
     private List<Progress> progresses = new ArrayList<>();
     private LineChart lineChart;
     private Toolbar mToolBar;
+    private LinearLayout bottomSheet;
+    private ImageView addEvent, closeBottomSheet;
+    private static View darkBackground;
+    private static BottomSheetBehavior bsb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +77,8 @@ public class PurposeDetailsActivity extends AppCompatActivity {
 
     private void initContent() {
 
+        bottomSheetSetUp();
+
         description = findViewById(R.id.purposeDetailDescription);
         description.setText(purpose().getPurpose_description());
 
@@ -84,6 +95,9 @@ public class PurposeDetailsActivity extends AppCompatActivity {
                 MainActivity.dataBase.purposeDao().insertProgress(new Progress(insertEvent.getText().toString(),
                         Double.parseDouble(insertPercentage.getText().toString()),
                         purpose().getPurpose_id()));
+
+                bsb.setState(BottomSheetBehavior.STATE_HIDDEN);
+                darkBackground.setVisibility(View.INVISIBLE);
 
                 //refresh recyclerview
                 recyclerViewSetUp();
@@ -117,6 +131,40 @@ public class PurposeDetailsActivity extends AppCompatActivity {
         progressRecyclerView = findViewById(R.id.progressRecyclerView);
         progressRecyclerView.setLayoutManager(new GridLayoutManager(PurposeDetailsActivity.this, 1));
         progressRecyclerView.setAdapter(new ProgressAdapter(progresses, PurposeDetailsActivity.this));
+
+    }
+
+    private void bottomSheetSetUp() {
+
+        //Bottom sheet
+        bottomSheet = findViewById(R.id.bottomSheet);
+        addEvent = findViewById(R.id.addNewEvent);
+        closeBottomSheet = findViewById(R.id.closeBottomSheet);
+        darkBackground = findViewById(R.id.darkBackground);
+
+        bsb = BottomSheetBehavior.from(bottomSheet);
+        //bottom sheet is hidden
+        bsb.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+        //when user touches the add event button
+        addEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //bottom sheet will expand
+                bsb.setState(BottomSheetBehavior.STATE_EXPANDED);
+                darkBackground.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        closeBottomSheet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bsb.setState(BottomSheetBehavior.STATE_HIDDEN);
+                darkBackground.setVisibility(View.INVISIBLE);
+
+            }
+        });
 
     }
 }
