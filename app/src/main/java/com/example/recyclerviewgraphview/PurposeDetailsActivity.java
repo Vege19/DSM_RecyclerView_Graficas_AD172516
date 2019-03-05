@@ -1,5 +1,6 @@
 package com.example.recyclerviewgraphview;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,6 +13,10 @@ import android.widget.TextView;
 import com.example.recyclerviewgraphview.Adapters.ProgressAdapter;
 import com.example.recyclerviewgraphview.DataBase.Progress;
 import com.example.recyclerviewgraphview.DataBase.Purpose;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +29,7 @@ public class PurposeDetailsActivity extends AppCompatActivity {
     private RecyclerView progressRecyclerView;
     private Button addProgressButton;
     private List<Progress> progresses = new ArrayList<>();
+    private LineChart lineChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +76,23 @@ public class PurposeDetailsActivity extends AppCompatActivity {
 
             }
         });
+
+        //graph build
+        lineChart = findViewById(R.id.graph);
+
+        List<Entry> entries = new ArrayList<>();
+
+        for (Progress progress : progresses) {
+            entries.add(new Entry((float)progress.getProgress_id(), (float)progress.getProgress_percentage()));
+        }
+
+        LineDataSet dataSet = new LineDataSet(entries, "Label");
+        dataSet.setColor(Color.BLUE);
+        dataSet.setValueTextColor(Color.BLACK);
+
+        LineData lineData = new LineData(dataSet);
+        lineChart.setData(lineData);
+
     }
 
     private void recyclerViewSetUp() {
