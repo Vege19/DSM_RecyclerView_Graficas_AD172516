@@ -19,7 +19,12 @@ import android.widget.Toolbar;
 import com.example.recyclerviewgraphview.Adapters.ProgressAdapter;
 import com.example.recyclerviewgraphview.DataBase.Progress;
 import com.example.recyclerviewgraphview.DataBase.Purpose;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -99,28 +104,44 @@ public class PurposeDetailsActivity extends AppCompatActivity {
                 bsb.setState(BottomSheetBehavior.STATE_HIDDEN);
                 darkBackground.setVisibility(View.INVISIBLE);
 
-                //refresh recyclerview
+                //refresh recyclerview and graph
                 recyclerViewSetUp();
-                lineChart.invalidate();
+                graphBuild();
 
             }
         });
 
+        graphBuild();
+
+    }
+
+    private void graphBuild() {
+
         //graph build
         lineChart = findViewById(R.id.graph);
+        lineChart.getAxisLeft().setDrawGridLines(false);
+        lineChart.getAxisRight().setDrawGridLines(false);
+        lineChart.getXAxis().setDrawGridLines(false);
+        lineChart.animateX(3000);
+        lineChart.animateY(3000);
+        lineChart.invalidate();
 
         List<Entry> entries = new ArrayList<>();
 
         for (Progress progress : progresses) {
-            entries.add(new Entry((float)progress.getProgress_id(), (float)progress.getProgress_percentage()));
+            entries.add(new Entry((float) progress.getProgress_id(), (float) progress.getProgress_percentage()));
         }
 
         LineDataSet dataSet = new LineDataSet(entries, "Porcentaje");
-        dataSet.setColor(Color.BLUE);
-        dataSet.setValueTextColor(Color.BLACK);
+        dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        dataSet.setDrawCircles(false);
+        dataSet.setDrawFilled(true);
+        dataSet.setFillColor(getResources().getColor(R.color.colorAccent));
+        dataSet.setColor(getResources().getColor(R.color.colorAccent));
 
         LineData lineData = new LineData(dataSet);
         lineChart.setData(lineData);
+        lineChart.invalidate();
 
     }
 

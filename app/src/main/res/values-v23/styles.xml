@@ -17,8 +17,8 @@
 
     <!-- Button Style -->
     <style name="ButtonStyle" parent="android:Widget.Button">
-        <item name="android:background">@drawable/button_background</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/edit_text_background</item>
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
 
     <!-- Toolbar Style -->

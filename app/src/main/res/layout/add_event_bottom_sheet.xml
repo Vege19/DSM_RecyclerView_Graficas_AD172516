@@ -30,7 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_round_close_24px"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"
+            android:background="?selectableItemBackgroundBorderless"/>
 
     </RelativeLayout>
 
@@ -59,6 +60,7 @@
         style="@style/ButtonStyle"
         android:text="AGREGAR"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
 
 </LinearLayout>

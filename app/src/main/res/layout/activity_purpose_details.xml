@@ -37,16 +37,19 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripción"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:textStyle="bold"/>
+
+            <TextView
                 android:id="@+id/purposeDetailDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Descripcion"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:text="Descripcion"
                 android:layout_marginTop="16dp"
-                android:background="@android:color/black"/>
+                style="@style/Base.TextAppearance.AppCompat.Body1"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -94,17 +97,11 @@
                         android:layout_alignParentEnd="true"
                         android:layout_gravity="center"
                         android:layout_weight="6"
-                        />
+                        android:background="?selectableItemBackgroundBorderless"/>
 
                 </LinearLayout>
 
             </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@android:color/black"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -118,7 +115,7 @@
                 android:id="@+id/graph"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"/>
 
         </LinearLayout>
 
