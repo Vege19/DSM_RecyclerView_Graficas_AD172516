@@ -1,6 +1,7 @@
 package com.example.recyclerviewgraphview.DataBase;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
@@ -27,5 +28,9 @@ public interface PurposeDao {
 
     @Query("SELECT * FROM progress WHERE purpose_id= :id")
     List<Progress> findProgressForPurpose(int id);
+
+    @Delete
+    void deletePurpose(Purpose... purposes);
+
 
 }

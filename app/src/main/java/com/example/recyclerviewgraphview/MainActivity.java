@@ -2,6 +2,7 @@ package com.example.recyclerviewgraphview;
 
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -15,19 +16,28 @@ import com.example.recyclerviewgraphview.Adapters.PurposeAdapter;
 import com.example.recyclerviewgraphview.DataBase.AppDataBase;
 import com.example.recyclerviewgraphview.DataBase.Purpose;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     public static AppDataBase dataBase;
-    private RecyclerView mRecyclerView;
+    private static RecyclerView mRecyclerView;
     private FloatingActionButton mFab;
     private Toolbar mToolBar;
+    private static List<Purpose> purposes = new ArrayList<>();
+    private static PurposeAdapter purposeAdapter;
+    private static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        context = getBaseContext();
+
+        mRecyclerView = findViewById(R.id.purposeRecyclerView);
+
 
         //Custom Toolbar setup
         mToolBar = findViewById(R.id.mainToolBar);
@@ -63,15 +73,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void recyclerViewSetup() {
+    public static void recyclerViewSetup() {
 
-        List<Purpose> purposes = dataBase.purposeDao().getAll();
-
-        mRecyclerView = findViewById(R.id.purposeRecyclerView);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 1));
-        mRecyclerView.setAdapter(new PurposeAdapter(purposes, MainActivity.this));
+        purposes = dataBase.purposeDao().getAll();
+        mRecyclerView.setLayoutManager(new GridLayoutManager(context, 1));
+        mRecyclerView.setAdapter(new PurposeAdapter(purposes, context));
 
     }
+
 
     void startAddPurposeActivity() {
 

@@ -7,9 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.recyclerviewgraphview.DataBase.Purpose;
+import com.example.recyclerviewgraphview.MainActivity;
 import com.example.recyclerviewgraphview.PurposeDetailsActivity;
 import com.example.recyclerviewgraphview.R;
 
@@ -50,6 +52,14 @@ public class PurposeAdapter extends RecyclerView.Adapter<PurposeAdapter.ViewHold
             }
         });
 
+        viewHolder.mDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.dataBase.purposeDao().deletePurpose(purpose);
+                MainActivity.recyclerViewSetup();
+            }
+        });
+
     }
 
     @Override
@@ -60,12 +70,14 @@ public class PurposeAdapter extends RecyclerView.Adapter<PurposeAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView mTitle, mDate;
+        private ImageView mDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mTitle = itemView.findViewById(R.id.purposeTitle);
             mDate = itemView.findViewById(R.id.purposeDate);
+            mDelete = itemView.findViewById(R.id.deleteItem);
 
         }
 
