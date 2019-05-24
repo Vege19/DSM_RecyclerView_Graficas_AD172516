@@ -42,7 +42,8 @@
         style="@style/EditTextStyle"
         android:hint="Evento"
         android:layout_marginTop="16dp"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:maxLength="40"/>
 
     <EditText
         android:id="@+id/insertPercentage"
@@ -51,7 +52,8 @@
         style="@style/EditTextStyle"
         android:layout_marginTop="16dp"
         android:hint="Porcentaje %"
-        android:inputType="number"/>
+        android:inputType="numberDecimal"
+        android:maxLength="5"/>
 
     <Button
         android:id="@+id/addProgressButton"

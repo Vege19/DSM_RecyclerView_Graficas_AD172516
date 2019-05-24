@@ -18,9 +18,9 @@ public interface PurposeDao {
     @Insert
     void insertPurpose(Purpose... purposes);
 
-    //Delete all purposes
-    @Query("DELETE FROM purpose")
-    void deleteAll();
+    //Delete all progresses
+    @Query("DELETE FROM progress WHERE purpose_id = :id")
+    void deleteAllProgresses(int id);
 
     //Insert progress event
     @Insert

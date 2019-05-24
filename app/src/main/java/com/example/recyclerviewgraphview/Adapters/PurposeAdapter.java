@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.recyclerviewgraphview.DataBase.Purpose;
 import com.example.recyclerviewgraphview.MainActivity;
@@ -55,8 +56,10 @@ public class PurposeAdapter extends RecyclerView.Adapter<PurposeAdapter.ViewHold
         viewHolder.mDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.dataBase.purposeDao().deleteAllProgresses(purpose.purpose_id);
                 MainActivity.dataBase.purposeDao().deletePurpose(purpose);
                 MainActivity.recyclerViewSetup();
+                Toast.makeText(context, "Se ha eliminado " + purpose.purpose_title, Toast.LENGTH_SHORT).show();
             }
         });
 

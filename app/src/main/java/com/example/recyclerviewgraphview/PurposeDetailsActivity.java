@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.recyclerviewgraphview.Adapters.ProgressAdapter;
@@ -89,17 +91,26 @@ public class PurposeDetailsActivity extends AppCompatActivity {
         addProgressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert progress
-                MainActivity.dataBase.purposeDao().insertProgress(new Progress(insertEvent.getText().toString(),
-                        Double.parseDouble(insertPercentage.getText().toString()),
-                        purpose().getPurpose_id()));
 
-                bsb.setState(BottomSheetBehavior.STATE_HIDDEN);
-                darkBackground.setVisibility(View.INVISIBLE);
+                if (insertEvent.getText().toString().isEmpty() || insertPercentage.getText().toString().isEmpty()) {
+                    Toast.makeText(PurposeDetailsActivity.this, "Llene todos los campos", Toast.LENGTH_SHORT).show();
+                } else {
+                    //insert progress
+                    MainActivity.dataBase.purposeDao().insertProgress(new Progress(insertEvent.getText().toString(),
+                            Double.parseDouble(insertPercentage.getText().toString()),
+                            purpose().getPurpose_id()));
 
-                //refresh recyclerview and graph
-                recyclerViewSetUp();
-                graphBuild();
+                    bsb.setState(BottomSheetBehavior.STATE_HIDDEN);
+                    darkBackground.setVisibility(View.INVISIBLE);
+
+                    //clear edit text
+                    insertEvent.setText("");
+                    insertPercentage.setText("");
+
+                    //refresh recyclerview and graph
+                    recyclerViewSetUp();
+                    graphBuild();
+                }
 
             }
         });
@@ -167,6 +178,7 @@ public class PurposeDetailsActivity extends AppCompatActivity {
                 //bottom sheet will expand
                 bsb.setState(BottomSheetBehavior.STATE_EXPANDED);
                 darkBackground.setVisibility(View.VISIBLE);
+                insertEvent.setSelected(true);
 
             }
         });
@@ -176,6 +188,8 @@ public class PurposeDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 bsb.setState(BottomSheetBehavior.STATE_HIDDEN);
                 darkBackground.setVisibility(View.INVISIBLE);
+                insertEvent.setText("");
+                insertPercentage.setText("");
 
             }
         });
